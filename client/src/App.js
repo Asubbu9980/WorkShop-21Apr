@@ -18,6 +18,8 @@ import CreateTeam from "./pages/teams/CreateTeam";
 import AllTeams from "./pages/teams/AllTeams";
 import TeamDetails from "./pages/teams/TeamDetails";
 
+import Survey from "./pages/Survey"; 
+
 function App() {
   return (
     <Routes>
@@ -34,7 +36,7 @@ function App() {
           <Route path="all" element={<AllTeams />} />
           <Route path=":id" element={<TeamDetails />} />
         </Route>
-
+        <Route path="/survey" element={<Survey />} /> {/* Add Survey route */}
         {/* Fallback */}
         <Route path="*" element={<NoPage />} />
       </Route>
