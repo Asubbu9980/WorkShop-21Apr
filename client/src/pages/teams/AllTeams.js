@@ -43,95 +43,98 @@ const AllTeams = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ mt: 1 }}>
-      {/* Top header buttons */}
-      {/* <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          mb: 3,
-          flexWrap: "wrap",
-        }}
-      >
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "#1976d2",
-            color: "white",
-            textTransform: "none",
-            borderRadius: 2,
-            px: 3,
-            mb: { xs: 2, sm: 0 },
-          }}
-        >
-          All Teams
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => navigate("/teams/create")}
-          sx={{
-            backgroundColor: "#0B5ED7",
-            textTransform: "none",
-            px: 2,
-            borderRadius: 2,
-          }}
-        >
-          + New Team
-        </Button>
-      </Box> */}
+    // <Box sx={{ mt: 1 }}>
+    //   {/* Top header buttons */}
+    //   {/* <Box
+    //     sx={{
+    //       display: "flex",
+    //       justifyContent: "space-between",
+    //       mb: 3,
+    //       flexWrap: "wrap",
+    //     }}
+    //   >
+    //     <Button
+    //       variant="contained"
+    //       sx={{
+    //         backgroundColor: "#1976d2",
+    //         color: "white",
+    //         textTransform: "none",
+    //         borderRadius: 2,
+    //         px: 3,
+    //         mb: { xs: 2, sm: 0 },
+    //       }}
+    //     >
+    //       All Teams
+    //     </Button>
+    //     <Button
+    //       variant="contained"
+    //       color="primary"
+    //       onClick={() => navigate("/teams/create")}
+    //       sx={{
+    //         backgroundColor: "#0B5ED7",
+    //         textTransform: "none",
+    //         px: 2,
+    //         borderRadius: 2,
+    //       }}
+    //     >
+    //       + New Team
+    //     </Button>
+    //   </Box> */}
 
      
-      <Grid container spacing={3}>
-        {teams.map((team) => (
-          <Grid key={team.id} item xs={12} sm={6} md={4} lg={3}>
-            <Card
-              sx={{
-                borderRadius: 3,
-                boxShadow: 3,
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="160"
-                image={team.image}
-                alt={team.name}
-                sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
-              />
-              <CardContent>
-                <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                  {team.name}
-                </Typography>
-                <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                  {/* <GroupsIcon fontSize="small" sx={{ color: "#1976d2", mr: 1 }} /> */}
-                  <Typography variant="body2" color="text.secondary">
-                    {team.members} Members
-                  </Typography>
-                </Box>
-              </CardContent>
-              <CardActions sx={{ px: 2, pb: 2 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  color="primary"
-                  sx={{
-                    borderRadius: 2,
-                    textTransform: "none",
-                    fontWeight: 500,
-                  }}
-                  onClick={() => navigate(`/teams/${team.id}`)}
-                >
-                  View Team
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    //   <Grid container spacing={3}>
+    //     {teams.map((team) => (
+    //       <Grid key={team.id} item xs={12} sm={6} md={4} lg={3}>
+    //         <Card
+    //           sx={{
+    //             borderRadius: 3,
+    //             boxShadow: 3,
+    //             height: "100%",
+    //             display: "flex",
+    //             flexDirection: "column",
+    //           }}
+    //         >
+    //           <CardMedia
+    //             component="img"
+    //             height="160"
+    //             image={team.image}
+    //             alt={team.name}
+    //             sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+    //           />
+    //           <CardContent>
+    //             <Typography variant="h6" sx={{ fontWeight: 600 }}>
+    //               {team.name}
+    //             </Typography>
+    //             <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+    //               {/* <GroupsIcon fontSize="small" sx={{ color: "#1976d2", mr: 1 }} /> */}
+    //               <Typography variant="body2" color="text.secondary">
+    //                 {team.members} Members
+    //               </Typography>
+    //             </Box>
+    //           </CardContent>
+    //           <CardActions sx={{ px: 2, pb: 2 }}>
+    //             <Button
+    //               fullWidth
+    //               variant="outlined"
+    //               color="primary"
+    //               sx={{
+    //                 borderRadius: 2,
+    //                 textTransform: "none",
+    //                 fontWeight: 500,
+    //               }}
+    //               onClick={() => navigate(`/teams/${team.id}`)}
+    //             >
+    //               View Team
+    //             </Button>
+    //           </CardActions>
+    //         </Card>
+    //       </Grid>
+    //     ))}
+    //   </Grid>
+    // </Box>
+    <Box sx={{ mt: 1 }}>
+      <Typography>All Teams</Typography>
+      </Box>
   );
 };
 
