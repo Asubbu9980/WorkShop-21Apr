@@ -9,9 +9,10 @@ import {
   AvatarGroup,
   InputLabel,
   Paper,
+  IconButton,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-
+import axios from "axios";
 
 const mockPeople = [
   { name: "John", avatar: "https://i.pravatar.cc/150?img=1" },
@@ -26,19 +27,48 @@ const CreateTeam = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setTeamImage(URL.createObjectURL(file));
+      setTeamImage(file); // Store the file for FormData
+      setValue("teamImage", file); // Set the file in the form state
     }
   };
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    alert("Team Created!");
+  const onSubmit = async (data) => {
+    // Log the form data to the console
+    console.log("Form Data:", {
+      ...data,
+      teamImage: teamImage ? teamImage.name : null, // Include the image name if provided
+    });
+
+    try {
+      // Create FormData object
+      const formData = new FormData();
+      formData.append("teamName", data.teamName);
+      formData.append("teamDescription", data.teamDescription);
+      formData.append("people", data.people);
+      if (teamImage) {
+        formData.append("teamImage", teamImage);
+      }
+
+      // Make API call using axios
+      const response = await axios.post("/api/teams", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("API Response:", response.data);
+      alert("Team Created Successfully!");
+    } catch (error) {
+      console.error("Error creating team:", error);
+      alert("Failed to create team. Please try again.");
+    }
   };
 
   return (
@@ -85,67 +115,79 @@ const CreateTeam = () => {
               error={!!errors.people}
               helperText={errors.people?.message}
             />
-            {/* <Box mt={2}>
-              <AvatarGroup max={5}>
-                {mockPeople.map((person, index) => (
-                  <Avatar key={index} alt={person.name} src={person.avatar} />
-                ))}
-              </AvatarGroup>
-              <Typography variant="caption" mt={1}>
-                05 Members
-              </Typography>
-            </Box> */}
           </Grid>
 
           {/* Image Upload */}
-          <Grid item xs={12} md={6}>
-            <Box
+          {/* Image Upload */}
+<Grid item xs={12} md={6}>
+  <Box
+    sx={{
+      border: "2px dashed #ccc",
+      p: 2,
+      textAlign: "center",
+      borderRadius: 2,
+      position: "relative", // Enable positioning for the X icon
+    }}
+  >
+    <InputLabel>Team Image (Optional)</InputLabel>
+    <label htmlFor="upload-button">
+      <input
+        accept="image/*"
+        id="upload-button"
+        type="file"
+        hidden
+        onChange={handleImageChange}
+      />
+      <Box
+        sx={{
+          border: "1px dashed lightgray",
+          padding: "16px",
+          marginY: 2,
+          cursor: "pointer",
+          position: "relative",
+        }}
+      >
+        {teamImage ? (
+          <>
+            {/* Display the uploaded image */}
+            <img
+              src={URL.createObjectURL(teamImage)}
+              alt="Uploaded"
+              style={{
+                width: "100%",
+                maxHeight: "140px",
+                objectFit: "cover",
+                borderRadius: "4px",
+              }}
+            />
+            {/* X Icon to clear the image */}
+            <IconButton
+              onClick={() => setTeamImage(null)}
               sx={{
-                border: "2px dashed #ccc",
-                p: 2,
-                textAlign: "center",
-                borderRadius: 2,
+                position: "absolute",
+                top: 8,
+                right: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 1)",
+                },
               }}
             >
-              <InputLabel>Team Image</InputLabel>
-              <label htmlFor="upload-button">
-                <input
-                  accept="image/*"
-                  id="upload-button"
-                  type="file"
-                  hidden
-                  onChange={handleImageChange}
-                />
-                <Box
-                  sx={{
-                    border: "1px dashed lightgray",
-                    padding: "16px",
-                    marginY: 2,
-                    cursor: "pointer",
-                  }}
-                >
-                  {teamImage ? (
-                    <img
-                      src={teamImage}
-                      alt="Uploaded"
-                      style={{ width: "100%", maxHeight: "140px", objectFit: "cover" }}
-                    />
-                  ) : (
-                    <>
-                      {/* <UploadFileIcon color="action" fontSize="large" /> */}
-                      <Typography variant="body2">Drag & drop your files here</Typography>
-                      <Typography variant="caption" color="primary">
-                        Browse File
-                      </Typography>
-                    </>
-                  )}
-                </Box>
-              </label>
-              <Button variant="contained" fullWidth>
-                Upload
-              </Button>
-            </Box>
-          </Grid>
+              <Typography variant="body2">X</Typography>
+            </IconButton>
+          </>
+        ) : (
+          <>
+            <Typography variant="body2">Drag & drop your files here</Typography>
+            <Typography variant="caption" color="primary">
+              Browse File
+            </Typography>
+          </>
+        )}
+      </Box>
+    </label>
+  </Box>
+</Grid>
 
           {/* Submit Button */}
           <Grid item xs={12}>
