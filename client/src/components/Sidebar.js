@@ -1,6 +1,7 @@
 import React from "react";
 import { Drawer, List, ListItem, ListItemText, Toolbar, Box, Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import Logo from "../assets/ml-logo.png"; // Adjust the path to your log
 
 const drawerWidth = 240;
 
@@ -10,10 +11,11 @@ const Sidebar = () => {
   const menuItems = [
     { text: "Overview", path: "/" },
     { text: "Social Feed", path: "/social" },
-    { text: "Team Learning", path: "/teams/all" },
+    { text: "Teams", path: "/teams/all" },
     { text: "Course Catalog", path: "/catalog" },
     { text: "Achievements", path: "/achievements" },
     { text: "Reports & Analytics", path: "/reports" },
+    { text: "Survey", path: "/survey" }, // Add the new Survey page here
   ];
 
   return (
@@ -29,7 +31,7 @@ const Sidebar = () => {
       <Toolbar>
         <Box sx={{ textAlign: "center", width: "100%" }}>
           <img
-            src="" // Replace with the actual path to your logo
+            src={Logo} // Replace with the actual path to your logo
             alt="Company Logo"
             style={{ maxWidth: "100%", height: "auto" }}
           />
