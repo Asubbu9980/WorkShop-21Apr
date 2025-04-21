@@ -8,10 +8,10 @@ import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
 // import Badge from '@mui/material/Badge';
 import { styled, alpha } from "@mui/material/styles";
-// import SearchIcon from "@mui/icons-material/Search";
-// import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-// import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-// import CalenderComoponent from "../common/Calender";
+ 
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+
 
 import { Container, Row, Col } from "react-bootstrap";
 import {
@@ -27,14 +27,14 @@ import {
   Chip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-// import SearchIcon from "@mui/icons-material/Search";
+import SearchIcon from "@mui/icons-material/Search";
 // import NotificationsIcon from "@mui/icons-material/Notifications";
 // import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from "react-router-dom";
-// import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-// import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
-// import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-// import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { fontSize } from "@mui/system";
 
 const SearchContainer = styled("div")(({ theme }) => ({
@@ -120,12 +120,6 @@ function Header({ drawerWidth = 240 }) {
   // profile
   
 
-
-  
-
- 
- 
- 
     return (
       <AppBar
         position="fixed"
@@ -144,7 +138,7 @@ function Header({ drawerWidth = 240 }) {
           <SearchContainer>
             <StyledInputBase placeholder="Search from courses..." />
             <SearchIconWrapper>
-              {/* <SearchIcon color="action" /> */}
+              <SearchIcon color="action" />
             </SearchIconWrapper>
           </SearchContainer>
 
@@ -159,22 +153,22 @@ function Header({ drawerWidth = 240 }) {
           
 
             {/* Calendar Icon */}
-            {/* <IconContainer onClick={() => setShowCalender(!showCalender)}>
+            <IconContainer onClick={() => setShowCalender(!showCalender)}>
               <CalendarTodayIcon color="action" />
-            </IconContainer> */}
+            </IconContainer>
          
 
             {/* Notifications Icon */}
             <IconButton 
             //</Box>onClick={(e) => handleNotificationClick(e)}
             >
-              {/* <Badge
+              <Badge
                 color="error"
                 variant="dot"
                 invisible={notifications.length === 0}
-              > */}
-                {/* <NotificationsNoneIcon color="action" /> */}
-              {/* </Badge> */}
+              > 
+                <NotificationsNoneIcon color="action" />
+               </Badge>
             </IconButton>
 
             {/* Popover */}
